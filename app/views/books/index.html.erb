@@ -3,13 +3,30 @@
 <% @books.each do |book| %>
 
   <p>Title</p>
+  <%= book.title %>
+
+  <p>Body</p>
+  <%= book.body %>
   <span>
-    <%= link_to book.title, book_path(book.id) %>
+    <%= link_to "show", book_path(book.id) %>
+  </span>
+  <span>
+    <%= link_to "edit" edit_book_path(@book.id) %>
+  </span>
+  <span>
+    <%= link_to "destroy" %>
   </span>
 
-  <P>Body</P>
-  <span>
-    <%= link_to book.body, book_path((book.id) %>
-  </span>
+  <% end %>
 
-<% end %>
+  <h3>New book</h3>
+
+ <%= form_with model: @book do |f| %>
+   <h4>Title</h4>
+   <%= f.text_field :title %>
+
+   <h4>Body</h4>
+   <%= f.text_area :body %>
+
+   <%= f.submit 'Create Book' %>
+ <% end %>
